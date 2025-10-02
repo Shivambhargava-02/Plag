@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Plagiarism Report</title>
+</head>
+<body>
+  <h2>Document-Level Similarity</h2>
+  <table border="1">
+    <tr><th>Document ID</th><th>Similarity</th></tr>
+    {% for doc in docs %}
+    <tr><td>{{ doc.id }}</td><td>{{ doc.similarity }}</td></tr>
+    {% endfor %}
+  </table>
+
+  <h2>Sentence-Level Matches</h2>
+  {% if matches %}
+  <table border="1">
+    <tr><th>Query Sentence</th><th>Matched Doc</th><th>Matched Sentence</th><th>Score</th></tr>
+    {% for m in matches %}
+    <tr>
+      <td>{{ m.query_sentence }}</td>
+      <td>{{ m.doc_id }}</td>
+      <td>{{ m.matched_sentence }}</td>
+      <td>{{ m.score }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+    <p>No sentence-level matches above threshold.</p>
+  {% endif %}
+</body>
+</html>
+
